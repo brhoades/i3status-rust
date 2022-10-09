@@ -5,5 +5,7 @@ pkgs.mkShell {
     pkg-config
     openssl
     dbus
+    lm_sensors
+    libpulseaudio
   ];
 }
