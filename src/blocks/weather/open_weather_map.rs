@@ -1,4 +1,6 @@
 use super::*;
+use std::path::Path;
+use std::fs;
 
 pub(super) const URL: &str = "https://api.openweathermap.org/data/2.5/weather";
 pub(super) const API_KEY_ENV: &str = "OPENWEATHERMAP_API_KEY";
@@ -32,7 +34,11 @@ impl Service {
 }
 
 fn getenv_openweathermap_api_key() -> Option<String> {
-    std::env::var(API_KEY_ENV).ok()
+    let val = std::env::var(API_KEY_ENV).ok();
+    match val.as_ref().map(|p| Path::new(p).exists()) {
+        Some(true) => fs::read_to_string(Path::new(&val.unwrap())).ok(),
+        _ => val,
+    }
 }
 fn getenv_openweathermap_city_id() -> Option<String> {
     std::env::var(CITY_ID_ENV).ok()
