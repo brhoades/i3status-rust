@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["MouseButton",""]],"fn":[["return_true",""]],"struct":[["ClickConfigEntry",""],["ClickHandler",""]]});
+window.SIDEBAR_ITEMS = {"enum":[["MouseButton","Can be one of `left`, `middle`, `right`, `wheel_up`, `wheel_down`, `forward`, `back`, or `double_left`."]],"fn":[["return_true",""]],"struct":[["ClickConfigEntry",""],["ClickHandler",""],["PostActions",""]]};

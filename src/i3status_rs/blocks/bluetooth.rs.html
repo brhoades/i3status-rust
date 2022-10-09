@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/blocks/bluetooth.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>bluetooth.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../i3status_rs/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../../i3status_rs/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../i3status_rs/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/blocks/bluetooth.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>bluetooth.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../i3status_rs/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../i3status_rs/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../i3status_rs/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -373,37 +368,6 @@
 <span id="368">368</span>
 <span id="369">369</span>
 <span id="370">370</span>
-<span id="371">371</span>
-<span id="372">372</span>
-<span id="373">373</span>
-<span id="374">374</span>
-<span id="375">375</span>
-<span id="376">376</span>
-<span id="377">377</span>
-<span id="378">378</span>
-<span id="379">379</span>
-<span id="380">380</span>
-<span id="381">381</span>
-<span id="382">382</span>
-<span id="383">383</span>
-<span id="384">384</span>
-<span id="385">385</span>
-<span id="386">386</span>
-<span id="387">387</span>
-<span id="388">388</span>
-<span id="389">389</span>
-<span id="390">390</span>
-<span id="391">391</span>
-<span id="392">392</span>
-<span id="393">393</span>
-<span id="394">394</span>
-<span id="395">395</span>
-<span id="396">396</span>
-<span id="397">397</span>
-<span id="398">398</span>
-<span id="399">399</span>
-<span id="400">400</span>
-<span id="401">401</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Monitor Bluetooth device</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! This block displays the connectivity of a given Bluetooth device and the battery level if this</span>
@@ -416,19 +380,19 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! # Configuration</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Key | Values | Required | Default</span>
-<span class="doccomment">//! ----|--------|----------|--------</span>
-<span class="doccomment">//! `mac` | MAC address of the Bluetooth device | Yes | -</span>
-<span class="doccomment">//! `adapter_mac` | MAC Address of the Bluetooth adapter (in case your device was connected to multiple currently available adapters) | No | None</span>
-<span class="doccomment">//! `format` | A string to customise the output of this block. See below for available placeholders. | No | &lt;code&gt;&quot;$name{ $percentage&amp;vert;}&amp;vert;Unavailable&quot;&lt;/code&gt;</span>
-<span class="doccomment">//! `hide_disconnected` | Whether to hide the block when disconnected | No | `false`</span>
+<span class="doccomment">//! Key | Values | Default</span>
+<span class="doccomment">//! ----|--------|--------</span>
+<span class="doccomment">//! `mac` | MAC address of the Bluetooth device | **Required**</span>
+<span class="doccomment">//! `adapter_mac` | MAC Address of the Bluetooth adapter (in case your device was connected to multiple currently available adapters) | `None`</span>
+<span class="doccomment">//! `format` | A string to customise the output of this block. See below for available placeholders. | &lt;code&gt;&quot; $icon $name{ $percentage&amp;vert;} &quot;&lt;/code&gt;</span>
+<span class="doccomment">//! `disconnected_format` | A string to customise the output of this block. See below for available placeholders. | &lt;code&gt;&quot; $icon{ $name&amp;vert;} &quot;&lt;/code&gt;</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Placeholder  | Value                                                                 | Type   | Unit</span>
 <span class="doccomment">//! -------------|-----------------------------------------------------------------------|--------|------</span>
+<span class="doccomment">//! `icon`       | Icon based on what type of device is connected                        | Icon   | -</span>
 <span class="doccomment">//! `name`       | Device&#39;s name                                                         | Text   | -</span>
 <span class="doccomment">//! `percentage` | Device&#39;s battery level (may be absent if the device is not supported) | Number | %</span>
 <span class="doccomment">//! `available`  | Present if the device is available                                    | Flag   | -</span>
-<span class="doccomment">//! `connected`  | Present if the device is connected                                    | Flag   | -</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! # Examples</span>
 <span class="doccomment">//!</span>
@@ -438,8 +402,8 @@
 <span class="doccomment">//! [[block]]</span>
 <span class="doccomment">//! block = &quot;bluetooth&quot;</span>
 <span class="doccomment">//! mac = &quot;00:18:09:92:1B:BA&quot;</span>
-<span class="doccomment">//! hide_disconnected = true</span>
-<span class="doccomment">//! format = &quot;&quot;</span>
+<span class="doccomment">//! disconnected_format = &quot;&quot;</span>
+<span class="doccomment">//! format = &quot; $icon &quot;</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! # Icons Used</span>
@@ -450,9 +414,9 @@
 <span class="doccomment">//! - `bluetooth` for all other devices</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">zbus::fdo</span>::{
-    <span class="ident">InterfacesAddedStream</span>, <span class="ident">InterfacesRemovedStream</span>, <span class="ident">ObjectManagerProxy</span>, <span class="ident">PropertiesProxy</span>,
-};
+<span class="kw">use</span> <span class="ident">zbus::fdo</span>::{<span class="ident">ObjectManagerProxy</span>, <span class="ident">PropertiesProxy</span>};
+
+<span class="macro">make_log_macro!</span>(<span class="ident">debug</span>, <span class="string">&quot;bluetooth&quot;</span>);
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Deserialize</span>, <span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">deny_unknown_fields</span>)]</span>
@@ -463,57 +427,53 @@
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span>)]</span>
     <span class="ident">format</span>: <span class="ident">FormatConfig</span>,
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span>)]</span>
-    <span class="ident">hide_disconnected</span>: <span class="ident">bool</span>,
+    <span class="ident">disconnected_format</span>: <span class="ident">FormatConfig</span>,
 }
 
 <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">run</span>(<span class="ident">config</span>: <span class="ident">toml::Value</span>, <span class="kw-2">mut</span> <span class="ident">api</span>: <span class="ident">CommonApi</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">config</span> <span class="op">=</span> <span class="ident">BluetoothConfig::deserialize</span>(<span class="ident">config</span>).<span class="ident">config_error</span>()<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">widget</span> <span class="op">=</span> <span class="ident">api</span>.<span class="ident">new_widget</span>().<span class="ident">with_format</span>(
-        <span class="ident">config</span>
-            .<span class="ident">format</span>
-            .<span class="ident">with_default</span>(<span class="string">&quot;$name{ $percentage|}|Unavailable&quot;</span>)<span class="question-mark">?</span>,
-    );
+    <span class="kw">let</span> <span class="ident">format</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">format</span>.<span class="ident">with_default</span>(<span class="string">&quot; $icon $name{ $percentage|} &quot;</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">disconnected_format</span> <span class="op">=</span> <span class="ident">config</span>
+        .<span class="ident">disconnected_format</span>
+        .<span class="ident">with_default</span>(<span class="string">&quot; $icon{ $name|} &quot;</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">widget</span> <span class="op">=</span> <span class="ident">Widget::new</span>();
 
-    <span class="kw">let</span> <span class="ident">dbus_conn</span> <span class="op">=</span> <span class="ident">new_system_dbus_connection</span>().<span class="kw">await</span><span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">monitor</span> <span class="op">=</span> <span class="ident">DeviceMonitor::new</span>(<span class="kw-2">&amp;</span><span class="ident">dbus_conn</span>, <span class="ident">config</span>.<span class="ident">mac</span>, <span class="ident">config</span>.<span class="ident">adapter_mac</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">monitor</span> <span class="op">=</span> <span class="ident">DeviceMonitor::new</span>(<span class="ident">config</span>.<span class="ident">mac</span>, <span class="ident">config</span>.<span class="ident">adapter_mac</span>).<span class="kw">await</span><span class="question-mark">?</span>;
 
     <span class="kw">loop</span> {
-        <span class="kw">match</span> <span class="ident">monitor</span>.<span class="ident">device</span>() {
+        <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">monitor</span>.<span class="ident">device</span> {
             <span class="comment">// Available</span>
             <span class="prelude-val">Some</span>(<span class="ident">device</span>) =&gt; {
                 <span class="kw">let</span> <span class="ident">connected</span> <span class="op">=</span> <span class="ident">device</span>.<span class="ident">connected</span>().<span class="kw">await</span><span class="question-mark">?</span>;
-                <span class="kw">if</span> <span class="ident">connected</span> <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="ident">config</span>.<span class="ident">hide_disconnected</span> {
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">values</span> <span class="op">=</span> <span class="macro">map!</span> {
-                        <span class="string">&quot;name&quot;</span> =&gt; <span class="ident">Value::text</span>(<span class="ident">device</span>.<span class="ident">name</span>().<span class="kw">await</span><span class="question-mark">?</span>),
-                        <span class="string">&quot;available&quot;</span> =&gt; <span class="ident">Value::flag</span>(),
-                    };
-                    <span class="ident">device</span>
-                        .<span class="ident">percentage</span>()
-                        .<span class="kw">await</span>
-                        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">values</span>.<span class="ident">insert</span>(<span class="string">&quot;percentage&quot;</span>.<span class="ident">into</span>(), <span class="ident">Value::percents</span>(<span class="ident">p</span>)));
-                    <span class="kw">if</span> <span class="ident">connected</span> {
-                        <span class="ident">widget</span>.<span class="ident">state</span> <span class="op">=</span> <span class="ident">State::Good</span>;
-                        <span class="ident">values</span>.<span class="ident">insert</span>(<span class="string">&quot;connected&quot;</span>.<span class="ident">into</span>(), <span class="ident">Value::flag</span>());
-                    } <span class="kw">else</span> {
-                        <span class="ident">widget</span>.<span class="ident">state</span> <span class="op">=</span> <span class="ident">State::Idle</span>;
-                    }
-                    <span class="ident">widget</span>.<span class="ident">set_icon</span>(<span class="ident">device</span>.<span class="ident">icon</span>().<span class="kw">await</span><span class="question-mark">?</span>)<span class="question-mark">?</span>;
-                    <span class="ident">widget</span>.<span class="ident">set_values</span>(<span class="ident">values</span>);
-                    <span class="ident">api</span>.<span class="ident">set_widget</span>(<span class="kw-2">&amp;</span><span class="ident">widget</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">values</span> <span class="op">=</span> <span class="macro">map!</span> {
+                    <span class="string">&quot;icon&quot;</span> =&gt; <span class="ident">Value::icon</span>(<span class="ident">api</span>.<span class="ident">get_icon</span>(<span class="ident">device</span>.<span class="ident">icon</span>().<span class="kw">await</span><span class="question-mark">?</span>)<span class="question-mark">?</span>),
+                    <span class="string">&quot;name&quot;</span> =&gt; <span class="ident">Value::text</span>(<span class="ident">device</span>.<span class="ident">name</span>().<span class="kw">await</span><span class="question-mark">?</span>),
+                    <span class="string">&quot;available&quot;</span> =&gt; <span class="ident">Value::flag</span>()
+                };
+                <span class="ident">device</span>
+                    .<span class="ident">percentage</span>()
+                    .<span class="kw">await</span>
+                    .<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">values</span>.<span class="ident">insert</span>(<span class="string">&quot;percentage&quot;</span>.<span class="ident">into</span>(), <span class="ident">Value::percents</span>(<span class="ident">p</span>)));
+                <span class="kw">if</span> <span class="ident">connected</span> {
+                    <span class="ident">widget</span>.<span class="ident">state</span> <span class="op">=</span> <span class="ident">State::Good</span>;
+                    <span class="ident">widget</span>.<span class="ident">set_format</span>(<span class="ident">format</span>.<span class="ident">clone</span>());
+                    <span class="macro">debug!</span>(<span class="string">&quot;Showing device as connected&quot;</span>);
                 } <span class="kw">else</span> {
-                    <span class="ident">api</span>.<span class="ident">hide</span>().<span class="kw">await</span><span class="question-mark">?</span>;
+                    <span class="macro">debug!</span>(<span class="string">&quot;Showing device as disconnected&quot;</span>);
+                    <span class="ident">widget</span>.<span class="ident">set_format</span>(<span class="ident">disconnected_format</span>.<span class="ident">clone</span>());
+                    <span class="ident">widget</span>.<span class="ident">state</span> <span class="op">=</span> <span class="ident">State::Idle</span>;
                 }
+                <span class="ident">widget</span>.<span class="ident">set_values</span>(<span class="ident">values</span>);
+
+                <span class="ident">api</span>.<span class="ident">set_widget</span>(<span class="kw-2">&amp;</span><span class="ident">widget</span>).<span class="kw">await</span><span class="question-mark">?</span>;
             }
             <span class="comment">// Unavailable</span>
             <span class="prelude-val">None</span> =&gt; {
-                <span class="kw">if</span> <span class="op">!</span><span class="ident">config</span>.<span class="ident">hide_disconnected</span> {
-                    <span class="ident">widget</span>.<span class="ident">state</span> <span class="op">=</span> <span class="ident">State::Idle</span>;
-                    <span class="ident">widget</span>.<span class="ident">set_icon</span>(<span class="string">&quot;bluetooth&quot;</span>)<span class="question-mark">?</span>;
-                    <span class="ident">widget</span>.<span class="ident">set_values</span>(<span class="ident">default</span>());
-                    <span class="ident">api</span>.<span class="ident">set_widget</span>(<span class="kw-2">&amp;</span><span class="ident">widget</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-                } <span class="kw">else</span> {
-                    <span class="ident">api</span>.<span class="ident">hide</span>().<span class="kw">await</span><span class="question-mark">?</span>;
-                }
+                <span class="macro">debug!</span>(<span class="string">&quot;Showing device as unavailable&quot;</span>);
+                <span class="ident">widget</span>.<span class="ident">state</span> <span class="op">=</span> <span class="ident">State::Idle</span>;
+                <span class="ident">widget</span>.<span class="ident">set_format</span>(<span class="ident">disconnected_format</span>.<span class="ident">clone</span>());
+                <span class="ident">widget</span>.<span class="ident">set_values</span>(<span class="macro">map!</span>(<span class="string">&quot;icon&quot;</span> =&gt; <span class="ident">Value::icon</span>(<span class="ident">api</span>.<span class="ident">get_icon</span>(<span class="string">&quot;bluetooth&quot;</span>)<span class="question-mark">?</span>)));
+                <span class="ident">api</span>.<span class="ident">set_widget</span>(<span class="kw-2">&amp;</span><span class="ident">widget</span>).<span class="kw">await</span><span class="question-mark">?</span>;
             }
         }
 
@@ -523,9 +483,9 @@
                     <span class="ident">res</span><span class="question-mark">?</span>;
                     <span class="kw">break</span>;
                 },
-                <span class="ident">Click</span>(<span class="ident">click</span>) <span class="op">=</span> <span class="ident">api</span>.<span class="ident">event</span>() =&gt; {
+                <span class="ident">event</span> <span class="op">=</span> <span class="ident">api</span>.<span class="ident">event</span>() =&gt; <span class="kw">if</span> <span class="kw">let</span> <span class="ident">Click</span>(<span class="ident">click</span>) <span class="op">=</span> <span class="ident">event</span> {
                     <span class="kw">if</span> <span class="ident">click</span>.<span class="ident">button</span> <span class="op">==</span> <span class="ident">MouseButton::Right</span> {
-                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">dev</span>) <span class="op">=</span> <span class="ident">monitor</span>.<span class="ident">device</span>() {
+                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">dev</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">monitor</span>.<span class="ident">device</span> {
                             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">connected</span>) <span class="op">=</span> <span class="ident">dev</span>.<span class="ident">connected</span>().<span class="kw">await</span> {
                                 <span class="kw">if</span> <span class="ident">connected</span> {
                                     <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">dev</span>.<span class="ident">device</span>.<span class="ident">disconnect</span>().<span class="kw">await</span>;
@@ -546,93 +506,71 @@
     <span class="ident">adapter_mac</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="ident">manager_proxy</span>: <span class="ident">ObjectManagerProxy</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>,
     <span class="ident">device</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span>,
-    <span class="ident">interface_added</span>: <span class="ident">InterfacesAddedStream</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>,
-    <span class="ident">interface_removed</span>: <span class="ident">InterfacesRemovedStream</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">struct</span> <span class="ident">Device</span> {
-    <span class="ident">available</span>: <span class="ident">bool</span>,
     <span class="ident">props</span>: <span class="ident">PropertiesProxy</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>,
     <span class="ident">device</span>: <span class="ident">Device1Proxy</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>,
-    <span class="ident">battery</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Battery1Proxy</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">battery</span>: <span class="ident">Battery1Proxy</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">DeviceMonitor</span> {
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">new</span>(
-        <span class="ident">dbus_conn</span>: <span class="kw-2">&amp;</span><span class="ident">zbus::Connection</span>,
-        <span class="ident">mac</span>: <span class="ident">String</span>,
-        <span class="ident">adapter_mac</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">manager_proxy</span> <span class="op">=</span> <span class="ident">ObjectManagerProxy::builder</span>(<span class="ident">dbus_conn</span>)
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">mac</span>: <span class="ident">String</span>, <span class="ident">adapter_mac</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">dbus_conn</span> <span class="op">=</span> <span class="ident">new_system_dbus_connection</span>().<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">manager_proxy</span> <span class="op">=</span> <span class="ident">ObjectManagerProxy::builder</span>(<span class="kw-2">&amp;</span><span class="ident">dbus_conn</span>)
             .<span class="ident">destination</span>(<span class="string">&quot;org.bluez&quot;</span>)
             .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">path</span>(<span class="string">&quot;/&quot;</span>))
             .<span class="ident">unwrap</span>()
             .<span class="ident">build</span>()
             .<span class="kw">await</span>
             .<span class="ident">error</span>(<span class="string">&quot;Failed to create ObjectManagerProxy&quot;</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">interface_added</span> <span class="op">=</span> <span class="ident">manager_proxy</span>
-            .<span class="ident">receive_interfaces_added</span>()
-            .<span class="kw">await</span>
-            .<span class="ident">error</span>(<span class="string">&quot;Failed to monitor interfaces&quot;</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">interface_removed</span> <span class="op">=</span> <span class="ident">manager_proxy</span>
-            .<span class="ident">receive_interfaces_removed</span>()
-            .<span class="kw">await</span>
-            .<span class="ident">error</span>(<span class="string">&quot;Failed to monitor interfaces&quot;</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">device</span> <span class="op">=</span> <span class="ident">Device::try_find</span>(<span class="kw-2">&amp;</span><span class="ident">manager_proxy</span>, <span class="kw-2">&amp;</span><span class="ident">mac</span>, <span class="ident">adapter_mac</span>.<span class="ident">as_deref</span>()).<span class="kw">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
             <span class="ident">mac</span>,
             <span class="ident">adapter_mac</span>,
             <span class="ident">manager_proxy</span>,
             <span class="ident">device</span>,
-            <span class="ident">interface_added</span>,
-            <span class="ident">interface_removed</span>,
         })
-    }
-
-    <span class="kw">fn</span> <span class="ident">device</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Device</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">device</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">device</span>) <span class="kw">if</span> <span class="ident">device</span>.<span class="ident">available</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">device</span>),
-            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
-        }
     }
 
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">wait_for_change</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">device</span> {
-            <span class="prelude-val">None</span> =&gt; <span class="kw">loop</span> {
-                <span class="macro">select!</span> {
-                    <span class="kw">_</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">interface_added</span>.<span class="ident">next</span>() =&gt; {
-                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">device</span>) <span class="op">=</span> <span class="ident">Device::try_find</span>(
-                            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">manager_proxy</span>,
-                            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">mac</span>,
-                            <span class="self">self</span>.<span class="ident">adapter_mac</span>.<span class="ident">as_deref</span>()
-                        ).<span class="kw">await</span><span class="question-mark">?</span>
-                        {
-                            <span class="self">self</span>.<span class="ident">device</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">device</span>);
-                            <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
-                        }
+            <span class="prelude-val">None</span> =&gt; {
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">interface_added</span> <span class="op">=</span> <span class="self">self</span>
+                    .<span class="ident">manager_proxy</span>
+                    .<span class="ident">receive_interfaces_added</span>()
+                    .<span class="kw">await</span>
+                    .<span class="ident">error</span>(<span class="string">&quot;Failed to monitor interfaces&quot;</span>)<span class="question-mark">?</span>;
+                <span class="kw">loop</span> {
+                    <span class="ident">interface_added</span>
+                        .<span class="ident">next</span>()
+                        .<span class="kw">await</span>
+                        .<span class="ident">error</span>(<span class="string">&quot;Stream ended unexpectedly&quot;</span>)<span class="question-mark">?</span>;
+                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">device</span>) <span class="op">=</span> <span class="ident">Device::try_find</span>(
+                        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">manager_proxy</span>,
+                        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">mac</span>,
+                        <span class="self">self</span>.<span class="ident">adapter_mac</span>.<span class="ident">as_deref</span>(),
+                    )
+                    .<span class="kw">await</span><span class="question-mark">?</span>
+                    {
+                        <span class="self">self</span>.<span class="ident">device</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">device</span>);
+                        <span class="macro">debug!</span>(<span class="string">&quot;Device has been added&quot;</span>);
+                        <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
                     }
-                    <span class="kw">_</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">interface_removed</span>.<span class="ident">next</span>() =&gt; (),
                 }
-            },
-            <span class="prelude-val">Some</span>(<span class="ident">device</span>) <span class="kw">if</span> <span class="op">!</span><span class="ident">device</span>.<span class="ident">available</span> =&gt; <span class="kw">loop</span> {
-                <span class="macro">select!</span> {
-                    <span class="prelude-val">Some</span>(<span class="ident">event</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">interface_added</span>.<span class="ident">next</span>() =&gt; {
-                        <span class="kw">let</span> <span class="ident">args</span> <span class="op">=</span> <span class="ident">event</span>.<span class="ident">args</span>().<span class="ident">error</span>(<span class="string">&quot;Failed to get the args&quot;</span>)<span class="question-mark">?</span>;
-                        <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">object_path</span>() <span class="op">==</span> <span class="ident">device</span>.<span class="ident">device</span>.<span class="ident">path</span>() {
-                            <span class="ident">device</span>.<span class="ident">available</span> <span class="op">=</span> <span class="bool-val">true</span>;
-                            <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
-                        }
-                    }
-                    <span class="kw">_</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">interface_removed</span>.<span class="ident">next</span>() =&gt; (),
-                }
-            },
+            }
             <span class="prelude-val">Some</span>(<span class="ident">device</span>) =&gt; {
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">updates</span> <span class="op">=</span> <span class="ident">device</span>
                     .<span class="ident">props</span>
                     .<span class="ident">receive_properties_changed</span>()
                     .<span class="kw">await</span>
                     .<span class="ident">error</span>(<span class="string">&quot;Failed to receive updates&quot;</span>)<span class="question-mark">?</span>;
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">interface_removed</span> <span class="op">=</span> <span class="self">self</span>
+                    .<span class="ident">manager_proxy</span>
+                    .<span class="ident">receive_interfaces_removed</span>()
+                    .<span class="kw">await</span>
+                    .<span class="ident">error</span>(<span class="string">&quot;Failed to monitor interfaces&quot;</span>)<span class="question-mark">?</span>;
                 <span class="kw">loop</span> {
                     <span class="macro">select!</span> {
                         <span class="kw">_</span> <span class="op">=</span> <span class="ident">updates</span>.<span class="ident">next</span>() =&gt; {
@@ -640,13 +578,14 @@
                             <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">tokio::time::timeout</span>(<span class="ident">Duration::from_millis</span>(<span class="number">100</span>), <span class="kw">async</span> {
                                 <span class="kw">loop</span> { <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">updates</span>.<span class="ident">next</span>().<span class="kw">await</span>; }
                             }).<span class="kw">await</span>;
+                            <span class="macro">debug!</span>(<span class="string">&quot;Got update for device&quot;</span>);
                             <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
                         }
-                        <span class="kw">_</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">interface_added</span>.<span class="ident">next</span>() =&gt; (),
-                        <span class="prelude-val">Some</span>(<span class="ident">event</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">interface_removed</span>.<span class="ident">next</span>() =&gt; {
+                        <span class="prelude-val">Some</span>(<span class="ident">event</span>) <span class="op">=</span> <span class="ident">interface_removed</span>.<span class="ident">next</span>() =&gt; {
                             <span class="kw">let</span> <span class="ident">args</span> <span class="op">=</span> <span class="ident">event</span>.<span class="ident">args</span>().<span class="ident">error</span>(<span class="string">&quot;Failed to get the args&quot;</span>)<span class="question-mark">?</span>;
                             <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">object_path</span>() <span class="op">==</span> <span class="ident">device</span>.<span class="ident">device</span>.<span class="ident">path</span>() {
-                                <span class="ident">device</span>.<span class="ident">available</span> <span class="op">=</span> <span class="bool-val">false</span>;
+                                <span class="self">self</span>.<span class="ident">device</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+                                <span class="macro">debug!</span>(<span class="string">&quot;Device is no longer available&quot;</span>);
                                 <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
                             }
                         },
@@ -663,7 +602,7 @@
         <span class="ident">mac</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">adapter_mac</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">root_oject</span>: <span class="ident">String</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">adapter_mac</span> {
+        <span class="kw">let</span> <span class="ident">root_object</span>: <span class="ident">String</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">adapter_mac</span> {
             <span class="prelude-val">Some</span>(<span class="ident">adapter_mac</span>) =&gt; {
                 <span class="kw">let</span> <span class="ident">adapters</span> <span class="op">=</span> <span class="ident">manager_proxy</span>
                     .<span class="ident">get_managed_objects</span>()
@@ -692,13 +631,18 @@
             <span class="prelude-val">None</span> =&gt; <span class="ident">String::new</span>(),
         };
 
+        <span class="macro">debug!</span>(<span class="string">&quot;root object: {:?}&quot;</span>, <span class="ident">root_object</span>);
+
         <span class="comment">// Iterate over all devices</span>
         <span class="kw">let</span> <span class="ident">devices</span> <span class="op">=</span> <span class="ident">manager_proxy</span>
             .<span class="ident">get_managed_objects</span>()
             .<span class="kw">await</span>
             .<span class="ident">error</span>(<span class="string">&quot;Failed to get the list of devices&quot;</span>)<span class="question-mark">?</span>;
+
+        <span class="macro">debug!</span>(<span class="string">&quot;all managed devices: {:?}&quot;</span>, <span class="ident">devices</span>);
+
         <span class="kw">for</span> (<span class="ident">path</span>, <span class="ident">interfaces</span>) <span class="kw">in</span> <span class="ident">devices</span> {
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">path</span>.<span class="ident">starts_with</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{root_oject}/&quot;</span>)) {
+            <span class="kw">if</span> <span class="op">!</span><span class="ident">path</span>.<span class="ident">starts_with</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{root_object}/&quot;</span>)) {
                 <span class="kw">continue</span>;
             }
 
@@ -715,8 +659,9 @@
                 <span class="kw">continue</span>;
             }
 
+            <span class="macro">debug!</span>(<span class="string">&quot;Found device with path {:?}&quot;</span>, <span class="ident">path</span>);
+
             <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="self">Self</span> {
-                <span class="ident">available</span>: <span class="bool-val">true</span>,
                 <span class="ident">props</span>: <span class="ident">PropertiesProxy::builder</span>(<span class="ident">manager_proxy</span>.<span class="ident">connection</span>())
                     .<span class="ident">destination</span>(<span class="string">&quot;org.bluez&quot;</span>)
                     .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">path</span>(<span class="ident">path</span>.<span class="ident">clone</span>()))
@@ -730,20 +675,16 @@
                     .<span class="ident">build</span>()
                     .<span class="kw">await</span>
                     .<span class="ident">error</span>(<span class="string">&quot;Failed to create Device1Proxy&quot;</span>)<span class="question-mark">?</span>,
-                <span class="ident">battery</span>: <span class="kw">if</span> <span class="ident">interfaces</span>.<span class="ident">get</span>(<span class="string">&quot;ogr.bluez.Battery1&quot;</span>).<span class="ident">is_some</span>() {
-                    <span class="prelude-val">Some</span>(
-                        <span class="ident">Battery1Proxy::builder</span>(<span class="ident">manager_proxy</span>.<span class="ident">connection</span>())
-                            .<span class="ident">path</span>(<span class="ident">path</span>)
-                            .<span class="ident">unwrap</span>()
-                            .<span class="ident">build</span>()
-                            .<span class="kw">await</span>
-                            .<span class="ident">error</span>(<span class="string">&quot;Failed to create Battery1Proxy&quot;</span>)<span class="question-mark">?</span>,
-                    )
-                } <span class="kw">else</span> {
-                    <span class="prelude-val">None</span>
-                },
+                <span class="ident">battery</span>: <span class="ident">Battery1Proxy::builder</span>(<span class="ident">manager_proxy</span>.<span class="ident">connection</span>())
+                    .<span class="ident">path</span>(<span class="ident">path</span>)
+                    .<span class="ident">unwrap</span>()
+                    .<span class="ident">build</span>()
+                    .<span class="kw">await</span>
+                    .<span class="ident">error</span>(<span class="string">&quot;Failed to create Battery1Proxy&quot;</span>)<span class="question-mark">?</span>,
             }));
         }
+
+        <span class="macro">debug!</span>(<span class="string">&quot;No device found&quot;</span>);
         <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
     }
 
@@ -762,11 +703,7 @@
     }
 
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">device</span>
-            .<span class="ident">name</span>()
-            .<span class="kw">await</span>
-            .<span class="ident">map</span>(<span class="ident">Into::into</span>)
-            .<span class="ident">error</span>(<span class="string">&quot;Failed to get name&quot;</span>)
+        <span class="self">self</span>.<span class="ident">device</span>.<span class="ident">name</span>().<span class="kw">await</span>.<span class="ident">error</span>(<span class="string">&quot;Failed to get name&quot;</span>)
     }
 
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">connected</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
@@ -777,11 +714,7 @@
     }
 
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">percentage</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">bp</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">battery</span> {
-            <span class="ident">bp</span>.<span class="ident">percentage</span>().<span class="kw">await</span>.<span class="ident">ok</span>()
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        }
+        <span class="self">self</span>.<span class="ident">battery</span>.<span class="ident">percentage</span>().<span class="kw">await</span>.<span class="ident">ok</span>()
     }
 }
 
@@ -806,5 +739,4 @@
     <span class="kw">fn</span> <span class="ident">percentage</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">zbus::Result</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>;
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="i3status_rs" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0 (fe5b13d68 2022-05-18)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="i3status_rs" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
