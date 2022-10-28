@@ -2,6 +2,8 @@ use super::*;
 use std::path::Path;
 use std::fs;
 
+make_log_macro!(debug, "weather");
+
 pub(super) const URL: &str = "https://api.openweathermap.org/data/2.5/weather";
 pub(super) const API_KEY_ENV: &str = "OPENWEATHERMAP_API_KEY";
 pub(super) const CITY_ID_ENV: &str = "OPENWEATHERMAP_CITY_ID";
@@ -34,11 +36,7 @@ impl Service {
 }
 
 fn getenv_openweathermap_api_key() -> Option<String> {
-    let val = std::env::var(API_KEY_ENV).ok();
-    match val.as_ref().map(|p| Path::new(p).exists()) {
-        Some(true) => fs::read_to_string(Path::new(&val.unwrap())).ok(),
-        _ => val,
-    }
+    std::env::var(API_KEY_ENV).ok()
 }
 fn getenv_openweathermap_city_id() -> Option<String> {
     std::env::var(CITY_ID_ENV).ok()
@@ -48,6 +46,21 @@ fn getenv_openweathermap_place() -> Option<String> {
 }
 fn default_lang() -> String {
     "en".into()
+}
+// If API key is a path, read from it and use the value
+// otherwise it's an API key. Allows nix configs to be pure w/o file io.
+fn get_openweathermap_key<T: AsRef<str>>(key: T) -> String {
+    let key = key.as_ref();
+    let p = Path::new(key);
+    if p.exists() {
+        debug!("path exists for api key: {:?}", &p);
+        let res = fs::read_to_string(p).unwrap_or_else(|_| key.to_string());
+        debug!("read: {:?}", &res);
+        res
+    } else {
+        debug!("path does not exist for key: {:?}", key);
+        key.to_string()
+    }
 }
 
 #[derive(Deserialize, Debug)]
@@ -82,7 +95,8 @@ impl WeatherProvider for Service {
     async fn get_weather(&self, autolocated: Option<Coordinates>) -> Result<WeatherResult> {
         let api_key = self.config.api_key.as_ref().or_error(|| {
             format!("missing key 'service.api_key' and environment variable {API_KEY_ENV}",)
-        })?;
+        }).map(get_openweathermap_key)?;
+
 
         let location_query = autolocated
             .map(|al| format!("lat={}&lon={}", al.latitude, al.longitude))
